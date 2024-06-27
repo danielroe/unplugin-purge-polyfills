@@ -83,8 +83,11 @@ export default {
     purgePolyfills.rollup({
       replacements: {
         'is-string': false, /** do not provide this polyfill */
-        /** provide a custom polyfill for this import in your codebase */
-        'hasown': {
+        /**
+         * provide a custom polyfill for this import in your codebase
+         * make sure this is correct for every usage
+         */
+        'node.extend': {
           default: '(obj1, obj2) => { ...obj2, ...obj1 }'
         }
       }
@@ -99,6 +102,11 @@ The following polyfills are not purged, so you might want to add your own code t
 - extend-shallow
 - xtend
 - defaults
+
+## Projects using or experimenting with `unplugin-purge-polyfill`
+
+- [nuxt/cli](https://github.com/nuxt/cli/pull/439)
+- [unjs/jiti](https://github.com/unjs/jiti/pull/261)
 
 ## 💻 Development
 
