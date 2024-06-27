@@ -29,6 +29,7 @@
     "test:types": "tsc --noEmit"
   },
   "dependencies": {
+    "defu": "^6.1.4",
     "magic-string": "^0.30.10",
     "mlly": "^1.7.1",
     "unplugin": "^1.10.1"

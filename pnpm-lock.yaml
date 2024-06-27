@@ -12,6 +12,9 @@ importers:
 
   .:
     dependencies:
+      defu:
+        specifier: ^6.1.4
+        version: 6.1.4
       magic-string:
         specifier: ^0.30.10
         version: 0.30.10

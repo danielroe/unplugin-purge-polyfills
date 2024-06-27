@@ -1,10 +1,11 @@
 import { createUnplugin } from 'unplugin'
 import MagicString from 'magic-string'
 import { findStaticImports, parseStaticImport } from 'mlly'
+import { defu } from 'defu'
 
 export interface PurgePolyfillsOptions {
   sourcemap?: boolean
-  replacements?: Record<string, Record<string, string>>
+  replacements?: Record<string, false | Record<string, string>>
 }
 
 export const defaultPolyfills: Record<string, Record<string, string>> = {
@@ -122,7 +123,14 @@ const CJS_STATIC_IMPORT_RE = /(?<=\s|^|[;}])(const|var|let)((?<imports>[\p{L}\p{
 const VIRTUAL_POLYFILL_PREFIX = 'virtual:purge-polyfills:'
 
 export const purgePolyfills = createUnplugin<PurgePolyfillsOptions>((opts) => {
-  const knownMods = opts.replacements || defaultPolyfills
+  const _knownMods = defu(opts.replacements, defaultPolyfills)
+  // Allow passing `false` to disable a polyfill
+  for (const mod in _knownMods) {
+    if (!_knownMods[mod]) {
+      delete _knownMods[mod]
+    }
+  }
+  const knownMods = _knownMods as Record<string, Record<string, string>>
   const specifiers = new Set(Object.keys(knownMods))
 
   return {
