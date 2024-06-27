@@ -48,6 +48,73 @@ export const defaultPolyfills: Record<string, Record<string, string>> = {
   'is-even': {
     default: 'n => (n % 2) === 0',
   },
+  // native replacements
+  'object.entries': {
+    default: 'Object.entries',
+  },
+  'date': {
+    default: 'Date',
+  },
+  'array.of': {
+    default: 'Array.of',
+  },
+  'number.isnan': {
+    default: 'Number.isNaN',
+  },
+  'array.prototype.findindex': {
+    default: 'Array.prototype.findIndex',
+  },
+  'array.from': {
+    default: 'Array.from',
+  },
+  'object-is': {
+    default: 'Object.is',
+  },
+  'hasown': {
+    default: '(obj, prop) => obj.hasOwnProperty(prop)',
+  },
+  'has-own-prop': {
+    default: '(obj, prop) => obj.hasOwnProperty(prop)',
+  },
+  'array-map': {
+    default: 'Array.prototype.map',
+  },
+  'is-nan': {
+    default: 'Number.isNaN',
+  },
+  'function-bind': {
+    default: 'Function.prototype.bind',
+  },
+  'regexp.prototype.flags': {
+    default: 'RegExp.prototype.flags',
+  },
+  'array.prototype.find': {
+    default: 'Array.prototype.find',
+  },
+  'object-keys': {
+    default: 'Object.keys',
+  },
+  'define-properties': {
+    default: 'Object.defineProperties',
+  },
+  'left-pad': {
+    default: 'String.prototype.padStart',
+  },
+  'pad-left': {
+    default: 'String.prototype.padStart',
+  },
+  'filter-array': {
+    default: 'Array.prototype.filter',
+  },
+  'array-every': {
+    default: 'Array.prototype.every',
+  },
+  'index-of': {
+    default: 'Array.prototype.indexOf',
+  },
+  'last-index-of': {
+    default: 'Array.prototype.lastIndexOf',
+  },
 }
 
 const CJS_STATIC_IMPORT_RE = /(?<=\s|^|[;}])(const|var|let)((?<imports>[\p{L}\p{M}\w\t\n\r $*,/{}@.]+))=\s*require\(["']\s*(?<specifier>(?<=")[^"]*[^\s"](?=\s*")|(?<=')[^']*[^\s'](?=\s*'))\s*["']\)[\s;]*/gmu
