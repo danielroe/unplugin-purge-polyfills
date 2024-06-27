@@ -13,7 +13,7 @@ It is under active development.
 
 ## Roadmap
 
-- [ ] use database of polyfills from https://github.com/SukkaW/nolyfill
+- [ ] use database of polyfills from https://github.com/SukkaW/nolyfill or https://github.com/es-tooling/module-replacements
 - [ ] implement publish-on-demand infrastructure to apply this plugin to published packages
 
 ## Usage
