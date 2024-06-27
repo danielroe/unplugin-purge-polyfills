@@ -115,6 +115,12 @@ The following polyfills are not purged, so you might want to add your own code t
 - [nuxt/cli](https://github.com/nuxt/cli/pull/439)
 - [unjs/jiti](https://github.com/unjs/jiti/pull/261)
 
+## Credits
+
+Thanks to https://github.com/es-tooling/module-replacements and https://github.com/esm-dev/esm.sh for polyfill data. ❤️
+
+Inspiration from https://github.com/SukkaW/nolyfill. ❤️
+
 ## 💻 Development
 
 - Clone this repository
