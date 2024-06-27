@@ -1,0 +1,61 @@
+{
+  "name": "unplugin-purge-polyfills",
+  "type": "module",
+  "version": "0.0.0",
+  "packageManager": "pnpm@9.4.0",
+  "description": "A tiny plugin to replace package imports with better native code.",
+  "license": "MIT",
+  "repository": "danielroe/unplugin-purge-polyfills",
+  "sideEffects": false,
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "dev": "vitest dev",
+    "lint": "eslint . --fix",
+    "prepare": "simple-git-hooks",
+    "prepack": "pnpm build",
+    "prepublishOnly": "pnpm lint && pnpm test",
+    "release": "release-it",
+    "test": "pnpm test:unit && pnpm test:types",
+    "test:unit": "vitest",
+    "test:types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "magic-string": "^0.30.10",
+    "mlly": "^1.7.1",
+    "unplugin": "^1.10.1"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "latest",
+    "@types/node": "20.11.16",
+    "@vitest/coverage-v8": "latest",
+    "eslint": "latest",
+    "lint-staged": "latest",
+    "rollup": "^4.18.0",
+    "simple-git-hooks": "latest",
+    "typescript": "latest",
+    "unbuild": "latest",
+    "vite": "^5.3.1",
+    "vitest": "latest"
+  },
+  "resolutions": {
+    "rollup": "^4",
+    "unplugin-purge-polyfills": "link:."
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,ts,mjs,cjs,json,.*rc}": [
+      "pnpm eslint --fix"
+    ]
+  }
+}
