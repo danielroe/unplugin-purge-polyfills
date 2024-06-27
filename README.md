@@ -44,6 +44,13 @@ At build time, it removes usage of these packages, in favour of directly using n
 - array-every
 - index-of
 - last-index-of
+- abort-controller
+- array-flatten
+- array-includes
+- has-own
+- has-proto
+- has-symbols
+- object-assign
 
 It is under active development.
 

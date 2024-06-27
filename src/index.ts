@@ -3,121 +3,15 @@ import MagicString from 'magic-string'
 import { findStaticImports, parseStaticImport } from 'mlly'
 import { defu } from 'defu'
 
+import { defaultPolyfills } from './replacements'
+
+export { defaultPolyfills } from './replacements'
+
 export interface PurgePolyfillsOptions {
   sourcemap?: boolean
   replacements?: Record<string, false | Record<string, string>>
   logLevel?: 'quiet' | 'verbose'
   mode?: 'load' | 'transform'
-}
-
-export const defaultPolyfills: Record<string, Record<string, string>> = {
-  // Micro-utilities
-  'is-number': {
-    default: `v => typeof v === 'number'`,
-  },
-  'is-plain-object': {
-    default: 'v => typeof v === \"object\" && v !== null && v.constructor === Object',
-  },
-  'is-primitve': {
-    default: 'v => v === null || (typeof v !== \"function\" && typeof v !== \"object\")',
-  },
-  'is-regexp': {
-    default: 'v => v instanceof RegExp',
-  },
-  'is-travis': {
-    default: '() => \"TRAVIS\" in process.env',
-  },
-  'is-npm': {
-    default: '() => process.env.npm_config_user_agent?.startsWith(\"npm\")',
-  },
-  'clone-regexp': {
-    default: 'v => new RegExp(v)',
-  },
-  'split-lines': {
-    default: 'str => str.split(/\\r?\\n/)',
-  },
-  'is-windows': {
-    default: '() => process.platform === \"win32\"',
-  },
-  'is-whitespace': {
-    default: 'str => str.trim() === \"\"',
-  },
-  'is-string': {
-    default: `v => typeof v === 'string'`,
-  },
-  'is-odd': {
-    default: 'n => (n % 2) === 1',
-  },
-  'is-even': {
-    default: 'n => (n % 2) === 0',
-  },
-  // native replacements
-  'object.entries': {
-    default: 'Object.entries',
-  },
-  'date': {
-    default: 'Date',
-  },
-  'array.of': {
-    default: 'Array.of',
-  },
-  'number.isnan': {
-    default: 'Number.isNaN',
-  },
-  'array.prototype.findindex': {
-    default: 'Array.prototype.findIndex',
-  },
-  'array.from': {
-    default: 'Array.from',
-  },
-  'object-is': {
-    default: 'Object.is',
-  },
-  'hasown': {
-    default: '(obj, prop) => obj.hasOwnProperty(prop)',
-  },
-  'has-own-prop': {
-    default: '(obj, prop) => obj.hasOwnProperty(prop)',
-  },
-  'array-map': {
-    default: 'Array.prototype.map',
-  },
-  'is-nan': {
-    default: 'Number.isNaN',
-  },
-  'function-bind': {
-    default: 'Function.prototype.bind',
-  },
-  'regexp.prototype.flags': {
-    default: 'RegExp.prototype.flags',
-  },
-  'array.prototype.find': {
-    default: 'Array.prototype.find',
-  },
-  'object-keys': {
-    default: 'Object.keys',
-  },
-  'define-properties': {
-    default: 'Object.defineProperties',
-  },
-  'left-pad': {
-    default: 'String.prototype.padStart',
-  },
-  'pad-left': {
-    default: 'String.prototype.padStart',
-  },
-  'filter-array': {
-    default: 'Array.prototype.filter',
-  },
-  'array-every': {
-    default: 'Array.prototype.every',
-  },
-  'index-of': {
-    default: 'Array.prototype.indexOf',
-  },
-  'last-index-of': {
-    default: 'Array.prototype.lastIndexOf',
-  },
 }
 
 const CJS_STATIC_IMPORT_RE = /(?<=\s|^|[;}])(const|var|let)((?<imports>[\p{L}\p{M}\w\t\n\r $*,/{}@.]+))=\s*require\(["']\s*(?<specifier>(?<=")[^"]*[^\s"](?=\s*")|(?<=')[^']*[^\s'](?=\s*'))\s*["']\)[\s;]*/gmu
