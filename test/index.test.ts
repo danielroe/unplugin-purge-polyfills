@@ -9,17 +9,11 @@ describe('unplugin-purge-polyfills', () => {
     expect(await transform(`
       const isString = require("is-string");
       isString("am I?")
-    `)).toMatchInlineSnapshot(`
-      "const isString = v => typeof v === 'string';
-      isString("am I?")"
-    `)
+    `)).toMatchInlineSnapshot(`undefined`)
     expect(await transform(`
       import isString from "is-string";
       isString("am I?");
-    `)).toMatchInlineSnapshot(`
-      "const isString = v => typeof v === 'string';
-      isString("am I?");"
-    `)
+    `)).toMatchInlineSnapshot(`undefined`)
   })
 
   it('resolves polyfill imports', async () => {
@@ -29,10 +23,31 @@ describe('unplugin-purge-polyfills', () => {
       "
     `)
   })
+
+  it('does not duplicate polyfills', async () => {
+    const bundle = await rollup({
+      input: 'entry.js',
+      plugins: [
+        {
+          name: 'entry',
+          load: id => id === 'entry.js' ? 'import "other.js"; import isString from "is-string"; console.log(isString(""));' : undefined,
+          resolveId: id => id === 'entry.js' ? id : undefined,
+        },
+        {
+          name: 'other',
+          load: id => id === 'other.js' ? 'import isString from "is-string"; console.log(isString(""));' : undefined,
+          resolveId: id => id === 'other.js' ? id : undefined,
+        },
+        purgePolyfills.rollup({}),
+      ],
+    })
+    const { output } = await bundle.generate({ format: 'es' })
+    expect(output[0].code).toMatchFileSnapshot('__snapshots__/e2e.output.js')
+  })
 })
 
 function transform(code: string, opts: PurgePolyfillsOptions = {}): Promise<string | undefined> {
-  const plugin = purgePolyfills.raw(opts, {} as any)
+  const plugin = purgePolyfills.raw(opts, { mode: 'transform' } as any)
   // @ts-expect-error untyped
   const res = plugin.transform(code)
   return (res?.code ?? res ?? undefined)?.trim()

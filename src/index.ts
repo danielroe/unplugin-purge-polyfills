@@ -6,6 +6,8 @@ import { defu } from 'defu'
 export interface PurgePolyfillsOptions {
   sourcemap?: boolean
   replacements?: Record<string, false | Record<string, string>>
+  logLevel?: 'quiet' | 'verbose'
+  mode?: 'load' | 'transform'
 }
 
 export const defaultPolyfills: Record<string, Record<string, string>> = {
@@ -133,15 +135,17 @@ export const purgePolyfills = createUnplugin<PurgePolyfillsOptions>((opts) => {
   const knownMods = _knownMods as Record<string, Record<string, string>>
   const specifiers = new Set(Object.keys(knownMods))
 
+  const logs = new Set<string>()
+
   return {
     name: 'unplugin-purge-polyfills',
     resolveId(id) {
-      if (specifiers.has(id)) {
+      if (opts.mode !== 'transform' && specifiers.has(id)) {
         return VIRTUAL_POLYFILL_PREFIX + id
       }
     },
     load(id) {
-      if (id.startsWith(VIRTUAL_POLYFILL_PREFIX)) {
+      if (opts.mode !== 'transform' && id.startsWith(VIRTUAL_POLYFILL_PREFIX)) {
         const polyfillId = id.slice(VIRTUAL_POLYFILL_PREFIX.length)
         let code = ''
         for (const exportName in knownMods[polyfillId]) {
@@ -151,10 +155,27 @@ export const purgePolyfills = createUnplugin<PurgePolyfillsOptions>((opts) => {
           }
           code += `export const ${exportName} = ${knownMods[polyfillId][exportName]}`
         }
+        logs.add(`Replaced import from ${polyfillId}.`)
         return code
       }
     },
+    buildEnd() {
+      if (opts.logLevel === 'quiet') {
+        return
+      }
+      if (opts.logLevel === 'verbose') {
+        for (const log of logs) {
+          // eslint-disable-next-line no-console
+          console.log(log)
+        }
+        // eslint-disable-next-line no-console
+        console.log(`Purged ${logs.size} polyfills.`)
+      }
+    },
     transform(code) {
+      if (opts.mode !== 'transform') {
+        return
+      }
       const staticImports = findStaticImports(code)
       for (const match of code.matchAll(CJS_STATIC_IMPORT_RE)) {
         staticImports.push({
@@ -187,6 +208,7 @@ export const purgePolyfills = createUnplugin<PurgePolyfillsOptions>((opts) => {
           if (replacement) {
             code += `const ${names[p]} = ${replacement};\n`
           }
+          logs.add(`Inlined replacement from ${polyfillImport.specifier}.`)
         }
 
         s.overwrite(polyfillImport.start, polyfillImport.end, code)
