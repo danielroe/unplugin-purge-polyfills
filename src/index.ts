@@ -7,16 +7,55 @@ export interface PurgePolyfillsOptions {
   replacements?: Record<string, Record<string, string>>
 }
 
+export const defaultPolyfills: Record<string, Record<string, string>> = {
+  // Micro-utilities
+  'is-number': {
+    default: `v => typeof v === 'number'`,
+  },
+  'is-plain-object': {
+    default: 'v => typeof v === \"object\" && v !== null && v.constructor === Object',
+  },
+  'is-primitve': {
+    default: 'v => v === null || (typeof v !== \"function\" && typeof v !== \"object\")',
+  },
+  'is-regexp': {
+    default: 'v => v instanceof RegExp',
+  },
+  'is-travis': {
+    default: '() => \"TRAVIS\" in process.env',
+  },
+  'is-npm': {
+    default: '() => process.env.npm_config_user_agent?.startsWith(\"npm\")',
+  },
+  'clone-regexp': {
+    default: 'v => new RegExp(v)',
+  },
+  'split-lines': {
+    default: 'str => str.split(/\\r?\\n/)',
+  },
+  'is-windows': {
+    default: '() => process.platform === \"win32\"',
+  },
+  'is-whitespace': {
+    default: 'str => str.trim() === \"\"',
+  },
+  'is-string': {
+    default: `v => typeof v === 'string'`,
+  },
+  'is-odd': {
+    default: 'n => (n % 2) === 1',
+  },
+  'is-even': {
+    default: 'n => (n % 2) === 0',
+  },
+}
+
 const CJS_STATIC_IMPORT_RE = /(?<=\s|^|[;}])(const|var|let)((?<imports>[\p{L}\p{M}\w\t\n\r $*,/{}@.]+))=\s*require\(["']\s*(?<specifier>(?<=")[^"]*[^\s"](?=\s*")|(?<=')[^']*[^\s'](?=\s*'))\s*["']\)[\s;]*/gmu
 
 const VIRTUAL_POLYFILL_PREFIX = 'virtual:purge-polyfills:'
 
 export const purgePolyfills = createUnplugin<PurgePolyfillsOptions>((opts) => {
-  const knownMods = opts.replacements || {
-    'is-string': {
-      default: `a => typeof a === 'string'`,
-    },
-  }
+  const knownMods = opts.replacements || defaultPolyfills
   const specifiers = new Set(Object.keys(knownMods))
 
   return {
