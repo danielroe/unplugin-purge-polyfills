@@ -59,7 +59,7 @@ importers:
         specifier: latest
         version: 2.0.0(typescript@5.5.2)
       vite:
-        specifier: ^5.3.1
+        specifier: 5.3.1
         version: 5.3.1(@types/node@20.11.16)
       vitest:
         specifier: latest
