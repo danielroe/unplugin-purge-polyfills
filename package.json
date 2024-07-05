@@ -46,7 +46,7 @@
     "simple-git-hooks": "latest",
     "typescript": "latest",
     "unbuild": "latest",
-    "vite": "5.3.1",
+    "vite": "5.3.3",
     "vitest": "latest"
   },
   "resolutions": {
