@@ -38,7 +38,7 @@
     "@antfu/eslint-config": "latest",
     "@types/node": "20.14.14",
     "@vitest/coverage-v8": "latest",
-    "bumpp": "9.4.1",
+    "bumpp": "9.4.2",
     "eslint": "latest",
     "lint-staged": "latest",
     "module-replacements": "2.1.0",
