@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "latest",
-    "@types/node": "20.14.14",
+    "@types/node": "20.16.0",
     "@vitest/coverage-v8": "latest",
     "bumpp": "9.4.2",
     "eslint": "latest",
