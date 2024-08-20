@@ -18,7 +18,7 @@ const CJS_STATIC_IMPORT_RE = /(?<=\s|^|[;}])(const|var|let)((?<imports>[\p{L}\p{
 
 const VIRTUAL_POLYFILL_PREFIX = 'virtual:purge-polyfills:'
 
-export const purgePolyfills = createUnplugin<PurgePolyfillsOptions>((opts) => {
+export const purgePolyfills = createUnplugin<PurgePolyfillsOptions>((opts = {}) => {
   const _knownMods = defu(opts.replacements, defaultPolyfills)
   // Allow passing `false` to disable a polyfill
   for (const mod in _knownMods) {
