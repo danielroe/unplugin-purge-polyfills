@@ -65,7 +65,7 @@ Install package:
 
 ```sh
 # npm
-npm install unplugin-purge-polyfills
+npm install --save-dev unplugin-purge-polyfills
 ```
 
 ```js
