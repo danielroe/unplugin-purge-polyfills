@@ -10,7 +10,7 @@ export const defaultPolyfills: Record<string, Record<string, string>> = {
     default: 'v => v === null || (typeof v !== \"function\" && typeof v !== \"object\")',
   },
   'is-regexp': {
-    default: 'v => v instanceof RegExp',
+    default: 'v => Object.prototype.toString.call(v) === "[object RegExp]"',
   },
   'is-travis': {
     default: '() => \"TRAVIS\" in process.env',
@@ -38,6 +38,33 @@ export const defaultPolyfills: Record<string, Record<string, string>> = {
   },
   'is-even': {
     default: 'n => (n % 2) === 0',
+  },
+  'call-bind': {
+    default: 'v => Function.call.bind(v)',
+  },
+  'es-get-iterator': {
+    default: 'v => v[Symbol.iterator]?.()',
+  },
+  'es-set-tostringtag': {
+    default: '(target, value) => Object.defineProperty(target, Symbol.toStringTag, { value, configurable: true })',
+  },
+  'is-array-buffer': {
+    default: 'v => Object.prototype.toString.call(v) === "[object ArrayBuffer]"',
+  },
+  'is-boolean-object': {
+    default: 'v => Object.prototype.toString.call(v) === "[object Boolean]"',
+  },
+  'is-date-object': {
+    default: 'v => Object.prototype.toString.call(v) === "[object Date]"',
+  },
+  'is-negative-zero': {
+    default: 'v => Object.is(v, -0)',
+  },
+  'is-number-object': {
+    default: 'v => Object.prototype.toString.call(v) === "[object Number]"',
+  },
+  'is-primitive': {
+    default: 'v => v === null || (typeof v !== "function" && typeof v !== "object")',
   },
   // native replacements
   'object.entries': {
