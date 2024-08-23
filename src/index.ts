@@ -47,7 +47,7 @@ export const purgePolyfills = createUnplugin<PurgePolyfillsOptions>((opts = {}) 
             code += `export default ${knownMods[polyfillId].default}\n`
             continue
           }
-          code += `export const ${exportName} = ${knownMods[polyfillId][exportName]}`
+          code += `export const ${exportName} = ${knownMods[polyfillId][exportName]}\n`
         }
         logs.add(`Replaced import from ${polyfillId}.`)
         return code
