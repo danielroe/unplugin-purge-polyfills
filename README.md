@@ -51,6 +51,15 @@ At build time, it removes usage of these packages, in favour of directly using n
 - has-proto
 - has-symbols
 - object-assign
+- call-bind
+- es-get-iterator
+- es-set-tostringtag
+- is-array-buffer
+- is-boolean-object
+- is-date-object
+- is-negative-zero
+- is-number-object
+- is-primitive
 
 It is under active development.
 
