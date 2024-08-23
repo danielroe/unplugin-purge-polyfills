@@ -9,11 +9,17 @@ describe('unplugin-purge-polyfills', () => {
     expect(await transform(`
       const isString = require("is-string");
       isString("am I?")
-    `)).toMatchInlineSnapshot(`undefined`)
+    `)).toMatchInlineSnapshot(`
+      "const isString = v => typeof v === 'string';
+      isString("am I?")"
+    `)
     expect(await transform(`
       import isString from "is-string";
       isString("am I?");
-    `)).toMatchInlineSnapshot(`undefined`)
+    `)).toMatchInlineSnapshot(`
+      "const isString = v => typeof v === 'string';
+      isString("am I?");"
+    `)
   })
 
   it('resolves polyfill imports', async () => {
@@ -46,10 +52,10 @@ describe('unplugin-purge-polyfills', () => {
   })
 })
 
-function transform(code: string, opts: PurgePolyfillsOptions = {}): Promise<string | undefined> {
-  const plugin = purgePolyfills.raw(opts, { mode: 'transform' } as any)
+function transform(code: string, opts: PurgePolyfillsOptions = { mode: 'transform' }, id = 'index.mjs'): Promise<string | undefined> {
+  const plugin = purgePolyfills.raw(opts, {} as any)
   // @ts-expect-error untyped
-  const res = plugin.transform(code)
+  const res = plugin.transform(code, id)
   return (res?.code ?? res ?? undefined)?.trim()
 }
 
