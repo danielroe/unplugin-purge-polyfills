@@ -22,6 +22,13 @@ describe('unplugin-purge-polyfills', () => {
     `)
   })
 
+  it('does not transform non-JS files', async () => {
+    expect(await transform(`
+      const isString = require("is-string");
+      isString("am I?")
+    `, {}, 'snappy.linux-x64-gnu.node')).toMatchInlineSnapshot(`undefined`)
+  })
+
   it('resolves polyfill imports', async () => {
     const code = await load('is-string')
     expect(code).toMatchInlineSnapshot(`

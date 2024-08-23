@@ -2,6 +2,7 @@ import { createUnplugin } from 'unplugin'
 import MagicString from 'magic-string'
 import { findStaticImports, parseStaticImport } from 'mlly'
 import { defu } from 'defu'
+import { createFilter } from '@rollup/pluginutils'
 
 import { defaultPolyfills } from './replacements'
 
@@ -12,6 +13,13 @@ export interface PurgePolyfillsOptions {
   replacements?: Record<string, false | Record<string, string>>
   logLevel?: 'quiet' | 'verbose'
   mode?: 'load' | 'transform'
+  /**
+   * An array of patterns to match source files against when running in `transform` mode
+   * @default [/\.[cm][tj]sx?$/]
+   */
+  include?: Array<string | RegExp>
+  /** An array of patterns to exclude source files when running in `transform` mode  */
+  exclude?: Array<string | RegExp>
 }
 
 const CJS_STATIC_IMPORT_RE = /(?<=\s|^|[;}])(const|var|let)((?<imports>[\p{L}\p{M}\w\t\n\r $*,/{}@.]+))=\s*require\(["']\s*(?<specifier>(?<=")[^"]*[^\s"](?=\s*")|(?<=')[^']*[^\s'](?=\s*'))\s*["']\)[\s;]*/gmu
@@ -30,6 +38,8 @@ export const purgePolyfills = createUnplugin<PurgePolyfillsOptions>((opts = {}) 
   const specifiers = new Set(Object.keys(knownMods))
 
   const logs = new Set<string>()
+
+  const filter = createFilter(opts.include || [/\.[cm][tj]sx?$/], opts.exclude)
 
   return {
     name: 'unplugin-purge-polyfills',
@@ -66,8 +76,11 @@ export const purgePolyfills = createUnplugin<PurgePolyfillsOptions>((opts = {}) 
         console.log(`Purged ${logs.size} polyfills.`)
       }
     },
-    transform(code) {
+    transform(code, id) {
       if (opts.mode !== 'transform') {
+        return
+      }
+      if (!filter(id)) {
         return
       }
       const staticImports = findStaticImports(code)
