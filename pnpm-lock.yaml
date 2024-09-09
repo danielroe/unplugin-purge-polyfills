@@ -47,8 +47,8 @@ importers:
         specifier: latest
         version: 15.2.10
       module-replacements:
-        specifier: 2.1.0
-        version: 2.1.0
+        specifier: 2.5.0
+        version: 2.5.0
       rollup:
         specifier: 4.21.2
         version: 4.21.2
@@ -2131,8 +2131,8 @@ packages:
   mlly@1.7.1:
     resolution: {integrity: sha512-rrVRZRELyQzrIUAVMHxP97kv+G786pHmOKzuFII8zDYahFBS7qnHh2AlYSl1GAHhaMPCz6/oHjVMcfFYgFYHgA==}
 
-  module-replacements@2.1.0:
-    resolution: {integrity: sha512-VxAzVvH5N2ftz+eUrZyy/omcezhSq7pWp8c1mi6fDWfJ1Vm0w05ZioGxdVicXvMG5ZINfPDPuH+NwF60KdGdXQ==}
+  module-replacements@2.5.0:
+    resolution: {integrity: sha512-m00JBwLSr7sur96PeAfAwNcyQk5MEm/GzZtZSRM+UjdzjNcgzPrWsWpsCpaRP+Fq+ROykt1TCr4GSR/ajcB83w==}
 
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -5071,7 +5071,7 @@ snapshots:
       pkg-types: 1.2.0
       ufo: 1.5.4
 
-  module-replacements@2.1.0: {}
+  module-replacements@2.5.0: {}
 
   mri@1.2.0: {}
 
