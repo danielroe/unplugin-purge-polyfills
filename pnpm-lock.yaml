@@ -26,7 +26,7 @@ importers:
         version: 1.7.1
       unplugin:
         specifier: ^1.12.2
-        version: 1.12.2
+        version: 1.13.1(webpack-sources@3.2.3)
     devDependencies:
       '@antfu/eslint-config':
         specifier: latest
@@ -191,6 +191,11 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
+  '@babel/parser@7.25.6':
+    resolution: {integrity: sha512-trGdfBdbD0l1ZPmcJ83eNxB9rbEax4ALFTF7fN386TMYbeCQbyme5cOEXQhbGXKebwGaB/J52w1mrklMcbgy6Q==}
+    engines: {node: '>=6.0.0'}
+    hasBin: true
+
   '@babel/standalone@7.25.5':
     resolution: {integrity: sha512-46bI7GJHwgWfWszOWMvJIsJjXd+LBMIlaiw4R54+b7GvDfxTVE6ytsqR8uEiI/zYECoB33ChwfN0wq/MLHLFXg==}
     engines: {node: '>=6.9.0'}
@@ -205,6 +210,10 @@ packages:
 
   '@babel/types@7.25.4':
     resolution: {integrity: sha512-zQ1ijeeCXVEh+aNL0RlmkPkG8HUiDcU2pzQQFjtbntgAczRASFzj4H+6+bV+dy1ntKR14I/DypeuRG1uma98iQ==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/types@7.25.6':
+    resolution: {integrity: sha512-/l42B1qxpG6RdfYf343Uw1vmDjeNhneUXtzhojE7pDgfpEypmRhI6j1kr17XCVv4Cgl9HdAiQY2x0GwKm7rWCw==}
     engines: {node: '>=6.9.0'}
 
   '@bcoe/v8-coverage@0.2.3':
@@ -2485,6 +2494,10 @@ packages:
     resolution: {integrity: sha512-TesUflQ0WKZqAvg52PWL6kHgLKP6xB6heTOdoYM0Wt2UHyxNa4K25EZZMgKns3BH1RLVbZCREPpLY0rhnNoHVQ==}
     engines: {node: ^10 || ^12 || >=14}
 
+  postcss@8.4.45:
+    resolution: {integrity: sha512-7KTLTdzdZZYscUc65XmjFiB73vBhBfbPztCYdUNvlaso9PrzjzcmjqBPR0lNGkcVlcO4BjiO5rK/qNz+XAen1Q==}
+    engines: {node: ^10 || ^12 || >=14}
+
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
@@ -2635,6 +2648,10 @@ packages:
 
   source-map-js@1.2.0:
     resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}
+    engines: {node: '>=0.10.0'}
+
+  source-map-js@1.2.1:
+    resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
 
   spdx-correct@3.2.0:
@@ -2825,9 +2842,14 @@ packages:
   unist-util-stringify-position@2.0.3:
     resolution: {integrity: sha512-3faScn5I+hy9VleOq/qNbAd6pAx7iH5jYBMS9I1HgQVijz/4mv5Bvw5iw1sC/90CODiKo81G/ps8AJrISn687g==}
 
-  unplugin@1.12.2:
-    resolution: {integrity: sha512-bEqQxeC7rxtxPZ3M5V4Djcc4lQqKPgGe3mAWZvxcSmX5jhGxll19NliaRzQSQPrk4xJZSGniK3puLWpRuZN7VQ==}
+  unplugin@1.13.1:
+    resolution: {integrity: sha512-6Kq1iSSwg7KyjcThRUks9LuqDAKvtnioxbL9iEtB9ctTyBA5OmrB8gZd/d225VJu1w3UpUsKV7eGrvf59J7+VA==}
     engines: {node: '>=14.0.0'}
+    peerDependencies:
+      webpack-sources: ^3
+    peerDependenciesMeta:
+      webpack-sources:
+        optional: true
 
   untyped@1.4.2:
     resolution: {integrity: sha512-nC5q0DnPEPVURPhfPQLahhSTnemVtPzdx7ofiRxXpOB2SYnb3MfdU3DVGyJdS8Lx+tBWeAePO8BfU/3EgksM7Q==}
@@ -3134,6 +3156,10 @@ snapshots:
     dependencies:
       '@babel/types': 7.25.4
 
+  '@babel/parser@7.25.6':
+    dependencies:
+      '@babel/types': 7.25.6
+
   '@babel/standalone@7.25.5': {}
 
   '@babel/template@7.25.0':
@@ -3155,6 +3181,12 @@ snapshots:
       - supports-color
 
   '@babel/types@7.25.4':
+    dependencies:
+      '@babel/helper-string-parser': 7.24.8
+      '@babel/helper-validator-identifier': 7.24.7
+      to-fast-properties: 2.0.0
+
+  '@babel/types@7.25.6':
     dependencies:
       '@babel/helper-string-parser': 7.24.8
       '@babel/helper-validator-identifier': 7.24.7
@@ -3805,11 +3837,11 @@ snapshots:
 
   '@vue/compiler-core@3.4.38':
     dependencies:
-      '@babel/parser': 7.25.4
+      '@babel/parser': 7.25.6
       '@vue/shared': 3.4.38
       entities: 4.5.0
       estree-walker: 2.0.2
-      source-map-js: 1.2.0
+      source-map-js: 1.2.1
 
   '@vue/compiler-dom@3.4.38':
     dependencies:
@@ -3818,15 +3850,15 @@ snapshots:
 
   '@vue/compiler-sfc@3.4.38':
     dependencies:
-      '@babel/parser': 7.25.4
+      '@babel/parser': 7.25.6
       '@vue/compiler-core': 3.4.38
       '@vue/compiler-dom': 3.4.38
       '@vue/compiler-ssr': 3.4.38
       '@vue/shared': 3.4.38
       estree-walker: 2.0.2
       magic-string: 0.30.11
-      postcss: 8.4.41
-      source-map-js: 1.2.0
+      postcss: 8.4.45
+      source-map-js: 1.2.1
 
   '@vue/compiler-ssr@3.4.38':
     dependencies:
@@ -5395,6 +5427,12 @@ snapshots:
       picocolors: 1.0.1
       source-map-js: 1.2.0
 
+  postcss@8.4.45:
+    dependencies:
+      nanoid: 3.3.7
+      picocolors: 1.1.0
+      source-map-js: 1.2.1
+
   prelude-ls@1.2.1: {}
 
   pretty-bytes@6.1.1: {}
@@ -5543,6 +5581,8 @@ snapshots:
       is-fullwidth-code-point: 5.0.0
 
   source-map-js@1.2.0: {}
+
+  source-map-js@1.2.1: {}
 
   spdx-correct@3.2.0:
     dependencies:
@@ -5740,12 +5780,12 @@ snapshots:
     dependencies:
       '@types/unist': 2.0.11
 
-  unplugin@1.12.2:
+  unplugin@1.13.1(webpack-sources@3.2.3):
     dependencies:
       acorn: 8.12.1
-      chokidar: 3.6.0
-      webpack-sources: 3.2.3
       webpack-virtual-modules: 0.6.2
+    optionalDependencies:
+      webpack-sources: 3.2.3
 
   untyped@1.4.2:
     dependencies:
@@ -5849,7 +5889,8 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  webpack-sources@3.2.3: {}
+  webpack-sources@3.2.3:
+    optional: true
 
   webpack-virtual-modules@0.6.2: {}
 
