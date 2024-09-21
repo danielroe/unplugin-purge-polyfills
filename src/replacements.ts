@@ -146,7 +146,7 @@ export const defaultPolyfills: Record<string, Record<string, string>> = {
     default: '(a, p, i) => a.includes(p, i)',
   },
   'has-own': {
-    default: '(obj, prop) => obj.hasOwnProperty(prop)',
+    default: 'Object.hasOwn',
   },
   'has-proto': {
     default: '() => { const foo = { bar: {} }; return ({ __proto__: foo }).bar === foo.bar && !({ __proto__: null } instanceof Object) }',
