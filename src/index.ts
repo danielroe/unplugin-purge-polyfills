@@ -1,8 +1,8 @@
-import { createUnplugin } from 'unplugin'
+import { createFilter } from '@rollup/pluginutils'
+import { defu } from 'defu'
 import MagicString from 'magic-string'
 import { findStaticImports, parseStaticImport } from 'mlly'
-import { defu } from 'defu'
-import { createFilter } from '@rollup/pluginutils'
+import { createUnplugin } from 'unplugin'
 
 import { defaultPolyfills } from './replacements'
 

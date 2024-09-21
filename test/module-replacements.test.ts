@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest'
 import { microUtilsReplacements, nativeReplacements } from 'module-replacements'
+import { describe, expect, it } from 'vitest'
 
 import { defaultPolyfills } from '../src'
 

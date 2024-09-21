@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest'
-import { rollup } from 'rollup'
 import type { PurgePolyfillsOptions } from '../src'
+import { rollup } from 'rollup'
+import { describe, expect, it } from 'vitest'
 import { purgePolyfills } from '../src'
 
 describe('unplugin-purge-polyfills', () => {
