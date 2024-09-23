@@ -62,7 +62,7 @@ describe('unplugin-purge-polyfills', () => {
 function transform(code: string, opts: PurgePolyfillsOptions = { mode: 'transform' }, id = 'index.mjs'): Promise<string | undefined> {
   const plugin = purgePolyfills.raw(opts, {} as any)
   // @ts-expect-error untyped
-  const res = plugin.transform(code, id)
+  const res = plugin.transform?.(code, id)
   return (res?.code ?? res ?? undefined)?.trim()
 }
 

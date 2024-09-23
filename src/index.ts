@@ -41,28 +41,81 @@ export const purgePolyfills = createUnplugin<PurgePolyfillsOptions>((opts = {}) 
 
   const filter = createFilter(opts.include || [/\.[cm][tj]sx?$/], opts.exclude)
 
+  function load(id: string) {
+    if (id.startsWith(VIRTUAL_POLYFILL_PREFIX)) {
+      const polyfillId = id.slice(VIRTUAL_POLYFILL_PREFIX.length)
+      let code = ''
+      for (const exportName in knownMods[polyfillId]) {
+        if (exportName === 'default') {
+          code += `export default ${knownMods[polyfillId].default}\n`
+          continue
+        }
+        code += `export const ${exportName} = ${knownMods[polyfillId][exportName]}\n`
+      }
+      logs.add(`Replaced import from ${polyfillId}.`)
+      return code
+    }
+  }
+
+  function resolveId(id: string) {
+    if (specifiers.has(id)) {
+      return VIRTUAL_POLYFILL_PREFIX + id
+    }
+  }
+
+  function transform(code: string, id: string) {
+    if (!filter(id)) {
+      return
+    }
+    const staticImports = findStaticImports(code)
+    for (const match of code.matchAll(CJS_STATIC_IMPORT_RE)) {
+      staticImports.push({
+        type: 'static',
+        ...match.groups as { imports: string, specifier: string },
+        code: match[0],
+        start: match.index,
+        end: (match.index || 0) + match[0].length,
+      })
+    }
+
+    if (!staticImports.length)
+      return
+
+    const polyfillImports = staticImports.filter(i => specifiers.has(i.specifier))
+    if (!polyfillImports.length)
+      return
+
+    const s = new MagicString(code)
+    for (const polyfillImport of polyfillImports) {
+      const parsed = parseStaticImport(polyfillImport)
+      let code = ''
+      const names = parsed.namedImports || {}
+      if (parsed.defaultImport) {
+        names.default = parsed.defaultImport
+      }
+
+      for (const p in names) {
+        const replacement = knownMods[polyfillImport.specifier]?.[p]
+        if (replacement) {
+          code += `const ${names[p]} = ${replacement};\n`
+        }
+        logs.add(`Inlined replacement from ${polyfillImport.specifier}.`)
+      }
+
+      s.overwrite(polyfillImport.start, polyfillImport.end, code)
+    }
+
+    if (s.hasChanged()) {
+      return {
+        code: s.toString(),
+        map: opts.sourcemap ? s.generateMap(({ hires: true })) : null,
+      }
+    }
+  }
+
   return {
     name: 'unplugin-purge-polyfills',
-    resolveId(id) {
-      if (opts.mode !== 'transform' && specifiers.has(id)) {
-        return VIRTUAL_POLYFILL_PREFIX + id
-      }
-    },
-    load(id) {
-      if (opts.mode !== 'transform' && id.startsWith(VIRTUAL_POLYFILL_PREFIX)) {
-        const polyfillId = id.slice(VIRTUAL_POLYFILL_PREFIX.length)
-        let code = ''
-        for (const exportName in knownMods[polyfillId]) {
-          if (exportName === 'default') {
-            code += `export default ${knownMods[polyfillId].default}\n`
-            continue
-          }
-          code += `export const ${exportName} = ${knownMods[polyfillId][exportName]}\n`
-        }
-        logs.add(`Replaced import from ${polyfillId}.`)
-        return code
-      }
-    },
+    ...(opts.mode === 'transform' ? { transform } : { resolveId, load }),
     buildEnd() {
       if (opts.logLevel === 'quiet') {
         return
@@ -74,58 +127,6 @@ export const purgePolyfills = createUnplugin<PurgePolyfillsOptions>((opts = {}) 
         }
         // eslint-disable-next-line no-console
         console.log(`Purged ${logs.size} polyfills.`)
-      }
-    },
-    transform(code, id) {
-      if (opts.mode !== 'transform') {
-        return
-      }
-      if (!filter(id)) {
-        return
-      }
-      const staticImports = findStaticImports(code)
-      for (const match of code.matchAll(CJS_STATIC_IMPORT_RE)) {
-        staticImports.push({
-          type: 'static',
-          ...match.groups as { imports: string, specifier: string },
-          code: match[0],
-          start: match.index,
-          end: (match.index || 0) + match[0].length,
-        })
-      }
-
-      if (!staticImports.length)
-        return
-
-      const polyfillImports = staticImports.filter(i => specifiers.has(i.specifier))
-      if (!polyfillImports.length)
-        return
-
-      const s = new MagicString(code)
-      for (const polyfillImport of polyfillImports) {
-        const parsed = parseStaticImport(polyfillImport)
-        let code = ''
-        const names = parsed.namedImports || {}
-        if (parsed.defaultImport) {
-          names.default = parsed.defaultImport
-        }
-
-        for (const p in names) {
-          const replacement = knownMods[polyfillImport.specifier]?.[p]
-          if (replacement) {
-            code += `const ${names[p]} = ${replacement};\n`
-          }
-          logs.add(`Inlined replacement from ${polyfillImport.specifier}.`)
-        }
-
-        s.overwrite(polyfillImport.start, polyfillImport.end, code)
-      }
-
-      if (s.hasChanged()) {
-        return {
-          code: s.toString(),
-          map: opts.sourcemap ? s.generateMap(({ hires: true })) : null,
-        }
       }
     },
   }
