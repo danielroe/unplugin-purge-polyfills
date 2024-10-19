@@ -42,7 +42,7 @@
     "bumpp": "9.7.1",
     "eslint": "latest",
     "lint-staged": "latest",
-    "module-replacements": "2.5.0",
+    "module-replacements": "2.1.0",
     "rollup": "4.24.0",
     "simple-git-hooks": "latest",
     "typescript": "latest",
@@ -59,7 +59,7 @@
   },
   "lint-staged": {
     "*.{js,ts,mjs,cjs,json,.*rc}": [
-      "pnpm eslint --fix"
+      "npx eslint --fix"
     ]
   }
 }

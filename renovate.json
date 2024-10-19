@@ -2,5 +2,13 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "github>danielroe/renovate"
+  ],
+  "packageRules": [
+    {
+      "packagePatterns": [
+        "module-replacements"
+      ],
+      "groupName": "module-replacements"
+    }
   ]
 }
