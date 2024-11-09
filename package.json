@@ -43,7 +43,7 @@
     "eslint": "latest",
     "lint-staged": "latest",
     "module-replacements": "2.1.0",
-    "rollup": "4.24.4",
+    "rollup": "4.25.0",
     "simple-git-hooks": "latest",
     "typescript": "latest",
     "unbuild": "latest",
@@ -51,7 +51,7 @@
     "vitest": "latest"
   },
   "resolutions": {
-    "rollup": "4.24.4",
+    "rollup": "4.25.0",
     "unplugin-purge-polyfills": "link:."
   },
   "simple-git-hooks": {
