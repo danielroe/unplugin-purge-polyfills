@@ -2,7 +2,7 @@
   "name": "unplugin-purge-polyfills",
   "type": "module",
   "version": "0.0.7",
-  "packageManager": "pnpm@9.13.0",
+  "packageManager": "pnpm@9.13.1",
   "description": "A tiny plugin to replace package imports with better native code.",
   "license": "MIT",
   "repository": "danielroe/unplugin-purge-polyfills",
