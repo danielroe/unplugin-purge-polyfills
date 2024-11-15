@@ -13,7 +13,7 @@ At build time, it removes usage of these packages, in favour of directly using n
 
 - is-number
 - is-plain-object
-- is-primitve
+- is-primitive
 - is-regexp
 - is-travis
 - is-npm
@@ -59,7 +59,6 @@ At build time, it removes usage of these packages, in favour of directly using n
 - is-date-object
 - is-negative-zero
 - is-number-object
-- is-primitive
 
 It is under active development.
 
