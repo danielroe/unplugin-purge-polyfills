@@ -6,7 +6,7 @@ export const defaultPolyfills: Record<string, Record<string, string>> = {
   'is-plain-object': {
     default: 'v => typeof v === \"object\" && v !== null && v.constructor === Object',
   },
-  'is-primitive': {
+  'is-primitve': {
     default: 'v => v === null || (typeof v !== \"function\" && typeof v !== \"object\")',
   },
   'is-regexp': {
@@ -62,6 +62,9 @@ export const defaultPolyfills: Record<string, Record<string, string>> = {
   },
   'is-number-object': {
     default: 'v => Object.prototype.toString.call(v) === "[object Number]"',
+  },
+  'is-primitive': {
+    default: 'v => v === null || (typeof v !== "function" && typeof v !== "object")',
   },
   // native replacements
   'object.entries': {
