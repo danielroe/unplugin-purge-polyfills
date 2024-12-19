@@ -149,7 +149,7 @@ Published under [MIT License](./LICENCE).
 [npm-version-href]: https://npmjs.com/package/unplugin-purge-polyfills
 [npm-downloads-src]: https://img.shields.io/npm/dm/unplugin-purge-polyfills?style=flat-square
 [npm-downloads-href]: https://npm.chart.dev/unplugin-purge-polyfills
-[github-actions-src]: https://img.shields.io/github/workflow/status/danielroe/unplugin-purge-polyfills/ci/main?style=flat-square
-[github-actions-href]: https://github.com/danielroe/unplugin-purge-polyfills/actions?query=workflow%3Aci
+[github-actions-src]: https://img.shields.io/github/actions/workflow/status/danielroe/unplugin-purge-polyfills/ci.yml?branch=main&style=flat-square
+[github-actions-href]: https://github.com/danielroe/unplugin-purge-polyfills/actions/workflows/ci.yml
 [codecov-src]: https://img.shields.io/codecov/c/gh/danielroe/unplugin-purge-polyfills/main?style=flat-square
 [codecov-href]: https://codecov.io/gh/danielroe/unplugin-purge-polyfills
