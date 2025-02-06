@@ -55,7 +55,7 @@ describe('unplugin-purge-polyfills', () => {
       ],
     })
     const { output } = await bundle.generate({ format: 'es' })
-    expect(output[0].code).toMatchFileSnapshot('__snapshots__/e2e.output.js')
+    await expect(output[0].code).toMatchFileSnapshot('__snapshots__/e2e.output.js')
   })
 })
 
