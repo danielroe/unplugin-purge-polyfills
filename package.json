@@ -29,11 +29,11 @@
     "test:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@rollup/pluginutils": "^5.1.0",
     "defu": "^6.1.4",
     "magic-string": "^0.30.11",
     "mlly": "^1.7.1",
-    "unplugin": "^2.0.0"
+    "unplugin": "^2.0.0",
+    "unplugin-utils": "^0.2.3"
   },
   "devDependencies": {
     "@antfu/eslint-config": "latest",
