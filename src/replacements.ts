@@ -233,7 +233,7 @@ export const defaultPolyfills: Record<string, Record<string, string>> = {
   'lodash.split': {
     default: 'String.prototype.split',
   },
-  'lodash.startWith': {
+  'lodash.startsWith': {
     default: 'String.prototype.startsWith',
   },
   'lodash.toLower': {
