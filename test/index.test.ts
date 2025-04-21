@@ -10,14 +10,14 @@ describe('unplugin-purge-polyfills', () => {
       const isString = require("is-string");
       isString("am I?")
     `)).toMatchInlineSnapshot(`
-      "const isString = v => typeof v === 'string';
+      "const isString = v => typeof v === "string";
       isString("am I?")"
     `)
     expect(await transform(`
       import isString from "is-string";
       isString("am I?");
     `)).toMatchInlineSnapshot(`
-      "const isString = v => typeof v === 'string';
+      "const isString = v => typeof v === "string";
       isString("am I?");"
     `)
   })
@@ -32,7 +32,7 @@ describe('unplugin-purge-polyfills', () => {
   it('resolves polyfill imports', async () => {
     const code = await load('is-string')
     expect(code).toMatchInlineSnapshot(`
-      "export default v => typeof v === 'string'
+      "export default v => typeof v === "string"
       "
     `)
   })
