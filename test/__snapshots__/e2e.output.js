@@ -1,4 +1,4 @@
-var isString = v => typeof v === 'string';
+var isString = v => typeof v === "string";
 
 console.log(isString(""));
 
