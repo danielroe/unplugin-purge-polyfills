@@ -30,10 +30,9 @@
   },
   "dependencies": {
     "defu": "^6.1.4",
-    "magic-string": "^0.30.11",
-    "mlly": "^1.7.1",
-    "unplugin": "^2.0.0",
-    "unplugin-utils": "^0.2.3"
+    "magic-string": "^0.30.17",
+    "mlly": "^1.7.4",
+    "unplugin": "^2.3.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "latest",

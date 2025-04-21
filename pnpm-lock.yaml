@@ -16,17 +16,14 @@ importers:
         specifier: ^6.1.4
         version: 6.1.4
       magic-string:
-        specifier: ^0.30.11
+        specifier: ^0.30.17
         version: 0.30.17
       mlly:
-        specifier: ^1.7.1
+        specifier: ^1.7.4
         version: 1.7.4
       unplugin:
-        specifier: ^2.0.0
+        specifier: ^2.3.2
         version: 2.3.2
-      unplugin-utils:
-        specifier: ^0.2.3
-        version: 0.2.4
     devDependencies:
       '@antfu/eslint-config':
         specifier: latest
@@ -2609,10 +2606,6 @@ packages:
 
   unist-util-visit@5.0.0:
     resolution: {integrity: sha512-MR04uvD+07cwl/yhVuVWAtw+3GOR/knlL55Nd/wAdblk27GCVt3lqpTivy/tkJcZoNPzTwS1Y+KMojlLDhoTzg==}
-
-  unplugin-utils@0.2.4:
-    resolution: {integrity: sha512-8U/MtpkPkkk3Atewj1+RcKIjb5WBimZ/WSLhhR3w6SsIj8XJuKTacSP8g+2JhfSGw0Cb125Y+2zA/IzJZDVbhA==}
-    engines: {node: '>=18.12.0'}
 
   unplugin@2.3.2:
     resolution: {integrity: sha512-3n7YA46rROb3zSj8fFxtxC/PqoyvYQ0llwz9wtUPUutr9ig09C8gGo5CWCwHrUzlqC1LLR43kxp5vEIyH1ac1w==}
@@ -5511,11 +5504,6 @@ snapshots:
       '@types/unist': 3.0.3
       unist-util-is: 6.0.0
       unist-util-visit-parents: 6.0.1
-
-  unplugin-utils@0.2.4:
-    dependencies:
-      pathe: 2.0.3
-      picomatch: 4.0.2
 
   unplugin@2.3.2:
     dependencies:

@@ -1,8 +1,8 @@
+import type { UnpluginOptions } from 'unplugin'
 import { defu } from 'defu'
 import MagicString from 'magic-string'
 import { findStaticImports, parseStaticImport } from 'mlly'
 import { createUnplugin } from 'unplugin'
-import { createFilter } from 'unplugin-utils'
 
 import { defaultPolyfills } from './replacements'
 
@@ -39,8 +39,6 @@ export const purgePolyfills = createUnplugin<PurgePolyfillsOptions>((opts = {}) 
 
   const logs = new Set<string>()
 
-  const filter = createFilter(opts.include || [/\.[cm][tj]sx?$/], opts.exclude)
-
   function load(id: string) {
     if (id.startsWith(VIRTUAL_POLYFILL_PREFIX)) {
       const polyfillId = id.slice(VIRTUAL_POLYFILL_PREFIX.length)
@@ -63,10 +61,7 @@ export const purgePolyfills = createUnplugin<PurgePolyfillsOptions>((opts = {}) 
     }
   }
 
-  function transform(code: string, id: string) {
-    if (!filter(id)) {
-      return
-    }
+  function transform(code: string) {
     const staticImports = findStaticImports(code)
     for (const match of code.matchAll(CJS_STATIC_IMPORT_RE)) {
       staticImports.push({
@@ -115,7 +110,22 @@ export const purgePolyfills = createUnplugin<PurgePolyfillsOptions>((opts = {}) 
 
   return {
     name: 'unplugin-purge-polyfills',
-    ...(opts.mode === 'transform' ? { transform } : { resolveId, load }),
+    ...(opts.mode === 'transform'
+      ? {
+          transform: {
+            filter: {
+              id: {
+                include: opts.include || [/\.[cm][tj]sx?$/],
+                exclude: opts.exclude,
+              },
+            },
+            handler: transform,
+          },
+        }
+      : {
+          resolveId,
+          load,
+        }),
     buildEnd() {
       if (opts.logLevel === 'quiet') {
         return
@@ -129,5 +139,5 @@ export const purgePolyfills = createUnplugin<PurgePolyfillsOptions>((opts = {}) 
         console.log(`Purged ${logs.size} polyfills.`)
       }
     },
-  }
+  } satisfies UnpluginOptions
 })
