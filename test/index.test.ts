@@ -48,7 +48,7 @@ describe('unplugin-purge-polyfills', () => {
         },
         {
           name: 'other',
-          load: id => id === 'other.js' ? 'import isString from "is-string"; console.log(isString(""));' : undefined,
+          load: id => id === 'other.js' ? 'import isString from "is-string"; console.log(isString(3));' : undefined,
           resolveId: id => id === 'other.js' ? id : undefined,
         },
         purgePolyfills.rollup({}),
