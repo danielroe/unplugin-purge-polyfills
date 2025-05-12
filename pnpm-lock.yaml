@@ -23,7 +23,7 @@ importers:
         version: 1.7.4
       unplugin:
         specifier: ^2.3.2
-        version: 2.3.2
+        version: 2.3.3
     devDependencies:
       '@antfu/eslint-config':
         specifier: latest
@@ -2782,8 +2782,8 @@ packages:
     resolution: {integrity: sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==}
     engines: {node: '>= 0.8'}
 
-  unplugin@2.3.2:
-    resolution: {integrity: sha512-3n7YA46rROb3zSj8fFxtxC/PqoyvYQ0llwz9wtUPUutr9ig09C8gGo5CWCwHrUzlqC1LLR43kxp5vEIyH1ac1w==}
+  unplugin@2.3.3:
+    resolution: {integrity: sha512-DN4DgiS13HFrAapoRmmoa9B35QzmQVRH2k58HelO28htXVNEEFZ8CGlZL0aRHXOXtz9McwY6lqaZjcc15uWMow==}
     engines: {node: '>=18.12.0'}
 
   unrs-resolver@1.7.2:
@@ -5913,7 +5913,7 @@ snapshots:
 
   unpipe@1.0.0: {}
 
-  unplugin@2.3.2:
+  unplugin@2.3.3:
     dependencies:
       acorn: 8.14.1
       picomatch: 4.0.2
