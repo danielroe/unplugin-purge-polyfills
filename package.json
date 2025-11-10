@@ -2,7 +2,7 @@
   "name": "unplugin-purge-polyfills",
   "type": "module",
   "version": "0.1.0",
-  "packageManager": "pnpm@10.20.0",
+  "packageManager": "pnpm@10.21.0",
   "description": "A tiny plugin to replace package imports with better native code.",
   "license": "MIT",
   "repository": "danielroe/unplugin-purge-polyfills",
@@ -42,7 +42,7 @@
     "eslint": "latest",
     "lint-staged": "latest",
     "module-replacements": "2.1.0",
-    "rollup": "4.52.5",
+    "rollup": "4.53.1",
     "simple-git-hooks": "latest",
     "typescript": "latest",
     "unbuild": "latest",
@@ -50,7 +50,7 @@
     "vitest": "latest"
   },
   "resolutions": {
-    "rollup": "4.52.5",
+    "rollup": "4.53.1",
     "unplugin-purge-polyfills": "link:."
   },
   "simple-git-hooks": {
