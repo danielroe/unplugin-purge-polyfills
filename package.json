@@ -32,7 +32,7 @@
     "defu": "^6.1.4",
     "magic-string": "^0.30.17",
     "mlly": "^1.7.4",
-    "unplugin": "^2.3.2"
+    "unplugin": "^3.0.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "latest",
