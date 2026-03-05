@@ -145,9 +145,9 @@ Published under [MIT License](./LICENCE).
 
 <!-- Badges -->
 
-[npm-version-src]: https://img.shields.io/npm/v/unplugin-purge-polyfills?style=flat-square
-[npm-version-href]: https://npmjs.com/package/unplugin-purge-polyfills
-[npm-downloads-src]: https://img.shields.io/npm/dm/unplugin-purge-polyfills?style=flat-square
+[npm-version-src]: https://npmx.dev/api/registry/badge/version/unplugin-purge-polyfills
+[npm-version-href]: https://npmx.dev/package/unplugin-purge-polyfills
+[npm-downloads-src]: https://npmx.dev/api/registry/badge/downloads/unplugin-purge-polyfills
 [npm-downloads-href]: https://npm.chart.dev/unplugin-purge-polyfills
 [github-actions-src]: https://img.shields.io/github/actions/workflow/status/danielroe/unplugin-purge-polyfills/ci.yml?branch=main&style=flat-square
 [github-actions-href]: https://github.com/danielroe/unplugin-purge-polyfills/actions/workflows/ci.yml
