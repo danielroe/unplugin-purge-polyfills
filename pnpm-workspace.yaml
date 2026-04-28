@@ -4,3 +4,7 @@ trustPolicy: no-downgrade
 
 packages:
   - playground
+
+overrides:
+  rollup: "4.60.1"
+  unplugin-purge-polyfills: "link:."

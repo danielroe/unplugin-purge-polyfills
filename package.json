@@ -49,10 +49,6 @@
     "vite": "7.3.1",
     "vitest": "latest"
   },
-  "resolutions": {
-    "rollup": "4.60.1",
-    "unplugin-purge-polyfills": "link:."
-  },
   "simple-git-hooks": {
     "pre-commit": "npx nano-staged"
   },
