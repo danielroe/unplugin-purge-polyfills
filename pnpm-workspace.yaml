@@ -8,3 +8,7 @@ packages:
 overrides:
   rollup: "4.60.1"
   unplugin-purge-polyfills: "link:."
+
+allowBuilds:
+  esbuild: false
+  simple-git-hooks: false
