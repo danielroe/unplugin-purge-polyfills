@@ -8,20 +8,21 @@
   "repository": "danielroe/unplugin-purge-polyfills",
   "sideEffects": false,
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "unbuild",
+    "build": "tsdown",
     "dev": "vitest dev",
     "lint": "eslint . --fix",
     "prepare": "simple-git-hooks",
-    "prepack": "pnpm build",
+    "prepack": "tsdown",
     "prepublishOnly": "pnpm lint && pnpm test",
     "release": "bumpp && npm publish",
     "test": "pnpm test:unit && pnpm test:types",
@@ -44,8 +45,8 @@
     "nano-staged": "1.0.2",
     "rollup": "4.61.1",
     "simple-git-hooks": "latest",
+    "tsdown": "0.22.0",
     "typescript": "latest",
-    "unbuild": "latest",
     "vite": "8.0.16",
     "vitest": "latest"
   },
