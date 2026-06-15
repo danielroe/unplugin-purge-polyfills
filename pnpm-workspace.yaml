@@ -6,7 +6,7 @@ packages:
   - playground
 
 overrides:
-  rollup: "4.61.1"
+  rollup: "4.62.0"
   unplugin-purge-polyfills: "link:."
 
 allowBuilds:
