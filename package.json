@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "defu": "^6.1.4",
-    "magic-string": "^0.30.17",
+    "magic-string": "^1.0.0",
     "mlly": "^1.7.4",
     "unplugin": "^3.0.0"
   },
