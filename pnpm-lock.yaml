@@ -26,19 +26,19 @@ importers:
         version: 3.3.0(rolldown@1.1.1)(rollup@4.62.2)(vite@8.0.16(@types/node@24.13.2)(jiti@2.7.0)(yaml@2.9.0))
     devDependencies:
       '@antfu/eslint-config':
-        specifier: latest
+        specifier: ^9.1.0
         version: 9.1.0(@typescript-eslint/rule-tester@8.59.3(eslint@10.6.0(jiti@2.7.0))(typescript@6.0.3))(@typescript-eslint/typescript-estree@8.62.1(typescript@6.0.3))(@typescript-eslint/utils@8.62.1(eslint@10.6.0(jiti@2.7.0))(typescript@6.0.3))(@vue/compiler-sfc@3.5.34)(eslint@10.6.0(jiti@2.7.0))(typescript@6.0.3)(vitest@4.1.9)
       '@types/node':
         specifier: 24.13.2
         version: 24.13.2
       '@vitest/coverage-v8':
-        specifier: latest
+        specifier: ^4.1.9
         version: 4.1.9(vitest@4.1.9)
       bumpp:
         specifier: 11.1.0
         version: 11.1.0
       eslint:
-        specifier: latest
+        specifier: ^10.6.0
         version: 10.6.0(jiti@2.7.0)
       module-replacements:
         specifier: 2.1.0
@@ -50,19 +50,19 @@ importers:
         specifier: 4.62.2
         version: 4.62.2
       simple-git-hooks:
-        specifier: latest
+        specifier: ^2.13.1
         version: 2.13.1
       tsdown:
         specifier: 0.22.3
         version: 0.22.3(typescript@6.0.3)
       typescript:
-        specifier: latest
+        specifier: ^6.0.3
         version: 6.0.3
       vite:
         specifier: 8.0.16
         version: 8.0.16(@types/node@24.13.2)(jiti@2.7.0)(yaml@2.9.0)
       vitest:
-        specifier: latest
+        specifier: ^4.1.9
         version: 4.1.9(@types/node@24.13.2)(@vitest/coverage-v8@4.1.9)(vite@8.0.16(@types/node@24.13.2)(jiti@2.7.0)(yaml@2.9.0))
 
   playground:
