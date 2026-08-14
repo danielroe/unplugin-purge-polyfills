@@ -38,7 +38,7 @@ importers:
         specifier: 12.2.0
         version: 12.2.0
       eslint:
-        specifier: ^10.6.0
+        specifier: 10.6.0
         version: 10.6.0(jiti@2.7.0)(supports-color@7.2.0)
       module-replacements:
         specifier: 2.1.0
