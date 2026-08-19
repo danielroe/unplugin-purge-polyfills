@@ -46,7 +46,7 @@
     "rollup": "4.62.4",
     "simple-git-hooks": "2.13.1",
     "tsdown": "0.22.14",
-    "typescript": "6.0.3",
+    "typescript": "7.0.2",
     "vite": "8.2.1",
     "vitest": "4.1.10"
   },
