@@ -40,7 +40,7 @@
     "@types/node": "24.13.3",
     "@vitest/coverage-v8": "5.0.0",
     "bumpp": "12.2.2",
-    "eslint": "10.9.1",
+    "eslint": "10.10.0",
     "module-replacements": "2.1.0",
     "nano-staged": "1.0.2",
     "rollup": "4.63.1",
