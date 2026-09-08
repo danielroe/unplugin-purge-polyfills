@@ -7,7 +7,7 @@ packages:
 
 overrides:
   rollup: "4.63.1"
-  unplugin-purge-polyfills: "link:."
+  unplugin-purge-polyfills: "workspace:*"
 
 allowBuilds:
   esbuild: false
