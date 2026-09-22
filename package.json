@@ -52,7 +52,7 @@
     "@vitest/coverage-v8": "5.0.1",
     "bumpp": "12.2.2",
     "eslint": "10.11.0",
-    "module-replacements": "2.1.0",
+    "module-replacements": "3.4.0",
     "nano-staged": "1.0.2",
     "rollup": "4.63.1",
     "simple-git-hooks": "2.14.0",
