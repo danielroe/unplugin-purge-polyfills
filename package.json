@@ -10,7 +10,7 @@
     },
     "packageManager": {
       "name": "pnpm",
-      "version": "12.10.1",
+      "version": "12.16.1",
       "onFail": "download"
     }
   },
@@ -50,13 +50,13 @@
     "@antfu/eslint-config": "10.0.0",
     "@types/node": "26.6.6",
     "@vitest/coverage-v8": "5.0.5",
-    "bumpp": "12.2.2",
+    "bumpp": "12.3.0",
     "eslint": "10.14.0",
     "module-replacements": "2.1.0",
     "nano-staged": "1.0.2",
-    "rollup": "4.63.1",
+    "rollup": "4.67.5",
     "simple-git-hooks": "2.14.0",
-    "tsdown": "0.22.14",
+    "tsdown": "0.23.5",
     "typescript": "6.0.3",
     "vite": "8.3.4",
     "vitest": "5.0.5"
